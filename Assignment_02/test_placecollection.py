@@ -26,7 +26,8 @@ def run_tests():
 
     # Test sorting places
     print("Test sorting - priority:")
-    place_collection.sort("priority")
+    from operator import itemgetter
+    place_collection.sort(key=itemgetter(2))
     print(place_collection)
     # TODO: Add more sorting tests
 
