@@ -1,6 +1,6 @@
 """(Incomplete) Tests for PlaceCollection class."""
-from placecollection import PlaceCollection
-from place import Place
+from Assignment_02.placecollection import PlaceCollection
+from Assignment_02.place import Place
 
 import csv
 
