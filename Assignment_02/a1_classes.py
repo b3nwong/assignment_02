@@ -11,26 +11,14 @@ this program tracks where the user has been and places they hope to visit in fut
 
 import csv
 import sys
+from Assignment_02.place import Place
+from Assignment_02.placecollection import PlaceCollection
 
-#load file
-def open_file():
-    global travel_list
-    with open('places.csv', 'r') as file:
-        reader = csv.reader(file)
-        travel_list = list(reader)
+traveller = PlaceCollection()
 
-#save file
-#inside option "Q" of execute_menu()
-#updates to csv file
-def save_file():
-    with open('places.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows(travel_list)
+"""mostly just renamed a lot of variables to fit witb the classes"""
+"""tweaked some variables in the lists so the format is more uniform"""
 
-
-
-
-# get users name
 def get_name():
     print("Welcome user!")
     user_name = input("What is your name?: ")
@@ -38,8 +26,6 @@ def get_name():
         print("Your name cannot be blank!")
         user_name = input("What is your name?: ")
     print("Hello {}!".format(user_name))
-
-
 
 # show the menu
 def show_menu():
@@ -49,27 +35,20 @@ def show_menu():
     print("M - Mark a place as visited")
     print("Q - Quit")
 
-#accesses the csv file and formats the display when print
-#used in both L and
 def list_out_places():
     list_numb = 0
     unvisited_places = 0
-    max_length = 0
-    for row in travel_list:
-        for item in row:
-            if len(item)> max_length:
-                max_length = len(item)
-    for row in travel_list:
-        if row[3] == "v":
+
+    for row in traveller.places:
+        if row[3] == "Visited":
             list_numb += 1
-            print("{:>2}. {:<{}} in {:>{}} priority {}".format(list_numb, row[0],max_length, row[1],max_length, row[2]))
+            print("{:>2}. {:<{}} in {:>{}} priority {}".format(list_numb, row[0],20, row[1],20, row[2]))
         else:
             list_numb += 1
-            print("*{}. {:<{}} in {:>{}} priority {}".format(list_numb, row[0],max_length, row[1],max_length, row[2]))
+            print("*{}. {:<{}} in {:>{}} priority {}".format(list_numb, row[0],20, row[1],20, row[2]))
             unvisited_places += 1
-    return unvisited_places
+    return unvisited_places #TODO COME BACK AND REVIEW THIS
 
-#executes users choice
 def execute_menu():
     show_menu()
 
@@ -108,8 +87,8 @@ def execute_menu():
                 place_priority = input("What priority would you assign to visiting this location?: ")
 
         addition_list.append(place_priority)
-        addition_list.append("n")
-        travel_list.append(addition_list)
+        addition_list.append("Unvisited")
+        traveller.places.append(addition_list)
 
     elif menu_choice == "M":
         unvisited_places = list_out_places()
@@ -118,17 +97,17 @@ def execute_menu():
             print("There are no more unvisited places.")
         else:
             place_to_edit = input("Which place would you like to mark as visited?: ")
-            for item in travel_list:
+            for item in traveller.places:
                 rows+=1
                 if place_to_edit in item:
-                    index_numb = travel_list.index(item)
-                    travel_list[index_numb][3] = "v"
+                    index_numb = traveller.places.index(item)
+                    traveller.places[index_numb][3] = "Visited"
                     print("FOUND IT! The list has been updated!")
                     break
                 else:
                     print("This is not in row {}.".format(rows))
     elif menu_choice == "Q":
-        save_file()
+        traveller.save_file('places.csv')
         print("Thank you and goodbye!")
         sys.exit()
     else:
@@ -137,13 +116,14 @@ def execute_menu():
 
     execute_menu()
 
-
 def main():
-    open_file()
-    get_name()
-    execute_menu()
+    #load file
+    #get name
+    #execute menu
+    """load the csv file"""
+    traveller.load_places('places.csv')
+    get_name() #get the user's name
+    execute_menu() #most of the functions from assignment 1 are in this function
+
 
 main()
-
-
-from place import Place

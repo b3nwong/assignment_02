@@ -31,9 +31,9 @@ class Place:
         """mark the place as visited"""
         self.str_visit_to_bool()  #slotted the function in here so that "v" and "n" values are caught when printing
         if self.is_visited == False:
-            return "(Unvisited)"
+            return "Unvisited"
         if self.is_visited == True:
-            return "(Visited)"
+            return "Visited"
 
     def is_important(self):
         """if a place has priority <= 2 it will be added to this list"""

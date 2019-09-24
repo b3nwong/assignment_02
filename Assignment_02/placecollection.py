@@ -3,10 +3,6 @@ from Assignment_02.place import Place
 import csv
 
 # Create your PlaceCollection class in this file
-
-travel_list = []
-
-
 class PlaceCollection:
     """..."""
     def __init__(self, places=[]):
@@ -23,6 +19,10 @@ class PlaceCollection:
             self.places = list(reader)
             for i in self.places:
                 i[2] = int(i[2])
+                if i[3] == 'n':
+                    i[3]= 'Unvisited'   # change 'n' to 'unvisited' to match rest of the list
+                elif i[3] == 'v':
+                    i[3] = 'Visited'    # change'v'to 'visited' to match rest of the list
 
     def save_file(self, file):
         with open(file, 'w', newline='') as f:
@@ -36,7 +36,7 @@ class PlaceCollection:
         temp_list.append(location.name)
         temp_list.append(location.country)
         temp_list.append((location.priority))
-        temp_list.append(location.alt_check_visited())
+        temp_list.append(location.check_visited())
         self.places.append(temp_list)
 
     def sort_priority(self, list_to_sort):
