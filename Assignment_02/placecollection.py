@@ -49,4 +49,9 @@ class PlaceCollection:
         """sort the list in alphabetical order"""
         list_to_sort.sort()
         return list_to_sort
+    def sort_visited(self, list_to_sort):
+        """sort the list according to visited or not"""
+        from operator import itemgetter
+        list_to_sort.sort(key=itemgetter(3), reverse = True)
+        return list_to_sort
     pass

@@ -1,18 +1,15 @@
-"""
-Name:
-Date:
-Brief Project Description:
-GitHub URL:
-"""
-# Create your main program in this file, using the TravelTrackerApp class
-
 from kivy.app import App
-
+from kivy.lang import Builder
+from Assignment_02.placecollection import PlaceCollection
+from Assignment_02.place import Place
 
 class TravelTrackerApp(App):
-    """..."""
-    pass
 
+    def build(self):
+        self.title = "Travl Tracker App"
+        self.root = Builder.load_file('app.kv')
+        return self.root
 
-if __name__ == '__main__':
-    TravelTrackerApp().run()
+    def sort_method_
+
+TravelTrackerApp().run()

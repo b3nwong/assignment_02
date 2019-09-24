@@ -35,6 +35,11 @@ def run_tests():
     place_collection.sort_alphabetically(place_collection.places)
     print(place_collection)
 
+    print("Test sorting - by visted status")
+    place_collection.sort_visited(place_collection.places)
+    print(place_collection)
+
+
     """save file from places list in csv file"""
     print("Test saving:")
     place_collection.save_file('places.csv') #new edited file is now saved and csv is updated!
