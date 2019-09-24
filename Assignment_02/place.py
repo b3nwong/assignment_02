@@ -18,14 +18,22 @@ class Place:
         """so the objects in list will be in string form"""
         return str(self)
 
+    def str_visit_to_bool(self):
+        """so that the'v' and 'n' input for marking visit status we store in the list is converted back into boolean"""
+        if self.is_visited == 'v':
+            self.is_visited = True
+            return self.is_visited
+        elif self.is_visited == 'n':
+            self.is_visited = False
+            return self.is_visited
+
     def check_visited(self):
         """mark the place as visited"""
+        self.str_visit_to_bool()  #slotted the function in here so that "v" and "n" values are caught when printing
         if self.is_visited == False:
-            return ""
-            #does not state if place is unvisited like the sample output
+            return "(Unvisited)"
         if self.is_visited == True:
             return "(Visited)"
-
 
     def is_important(self):
         """if a place has priority <= 2 it will be added to this list"""
@@ -34,10 +42,5 @@ class Place:
             important.append(self)
         return important
 
-    def alt_check_visited(self):
-        """converts boolean into 'v' or 'n' in the list"""
-        if self.is_visited == False:
-            return 'n'
-        if self.is_visited == True:
-            return 'v'
+
     pass

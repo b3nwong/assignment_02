@@ -1,4 +1,4 @@
-"""..."""
+"""new functions now use classes PlaceColletion and Place"""
 # Copy your first assignment to this file, then update it to use Place class
 # Optionally, you may also use PlaceCollection class
 """

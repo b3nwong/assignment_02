@@ -23,7 +23,12 @@ class PlaceCollection:
             self.places = list(reader)
             for i in self.places:
                 i[2] = int(i[2])
-            print(self.places)
+
+    def save_file(self, file):
+        with open(file, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerows(self.places)
+        print("Your file has been updated and saved!")
 
     def add_place(self, location):
         """add a single place to the places attribute"""
@@ -40,4 +45,8 @@ class PlaceCollection:
         list_to_sort.sort(key=itemgetter(2))
         return list_to_sort
 
+    def sort_alphabetically(self, list_to_sort):
+        """sort the list in alphabetical order"""
+        list_to_sort.sort()
+        return list_to_sort
     pass

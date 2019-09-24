@@ -17,9 +17,15 @@ def run_tests():
     # Test initial-value place
     print("Test initial-value place:")
     new_place = Place("Malagar", "Spain", 1, False)
+    print(new_place)
+
+    print("Test alternate method for marking visisted")
+    #now the is_visited value is changed from boolean to str; output should still be same
+    new_place = Place("Malagar", "Spain", 1, "n")
+    print(new_place)
     # TODO: Write tests to show this initialisation works
     print(new_place) #string representation of place
-    print(new_place.check_visited()) #check if place is visited, if unvisited should be blank
+    print(new_place.check_visited()) #check if place is visited
     print(new_place.is_important()) #important place is added to this list
     # TODO: Add more tests, as appropriate, for each method
 
