@@ -12,7 +12,7 @@ class Place:
 
     def __str__(self):
         """return string representation of location."""
-        return "{} in {}, priority {}{}".format(self.name, self.country, self.priority, self.check_visited())
+        return "{},{},{},{}".format(self.name, self.country, self.priority, self.check_visited())
 
     def __repr__(self):
         """so the objects in list will be in string form"""
@@ -29,9 +29,15 @@ class Place:
 
     def is_important(self):
         """if a place has priority <= 2 it will be added to this list"""
-        important = []
+        important = [] #todo review
         if self.priority <= 2:
             important.append(self)
         return important
 
+    def alt_check_visited(self):
+        """converts boolean into 'v' or 'n' in the list"""
+        if self.is_visited == False:
+            return 'n'
+        if self.is_visited == True:
+            return 'v'
     pass

@@ -22,12 +22,11 @@ def run_tests():
     # Test adding a new Place with values
     print("Test adding new place:")
     place_collection.add_place(Place("Smithfield", "Australia", 5, False))
-    print(place_collection)
-
+    print(place_collection.places)
     # Test sorting places
     print("Test sorting - priority:")
     from operator import itemgetter
-    place_collection.sort(key=itemgetter(2))
+    place_collection.places.sort(key=itemgetter(2)) #so that the 3rd element of the list 'priority' can be used as the key to sort
     print(place_collection)
     # TODO: Add more sorting tests
 
