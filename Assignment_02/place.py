@@ -37,10 +37,7 @@ class Place:
 
     def is_important(self):
         """if a place has priority <= 2 it will be added to this list"""
-        important = [] #todo review
         if self.priority <= 2:
-            important.append(self)
-        return important
-
+            return self
 
     pass

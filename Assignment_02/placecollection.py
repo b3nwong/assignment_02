@@ -23,6 +23,7 @@ class PlaceCollection:
                     i[3]= 'Unvisited'   # change 'n' to 'unvisited' to match rest of the list
                 elif i[3] == 'v':
                     i[3] = 'Visited'    # change'v'to 'visited' to match rest of the list
+            return self.places
 
     def save_file(self, file):
         with open(file, 'w', newline='') as f:
@@ -52,6 +53,6 @@ class PlaceCollection:
     def sort_visited(self, list_to_sort):
         """sort the list according to visited or not"""
         from operator import itemgetter
-        list_to_sort.sort(key=itemgetter(3), reverse = True)
+        list_to_sort.sort(key=itemgetter(3), reverse = False)
         return list_to_sort
     pass

@@ -26,8 +26,9 @@ def run_tests():
     # TODO: Write tests to show this initialisation works
     print(new_place) #string representation of place
     print(new_place.check_visited()) #check if place is visited
-    print(new_place.is_important()) #important place is added to this list
+    print("hello {}".format(new_place.is_important())) #important place is added to this list
     # TODO: Add more tests, as appropriate, for each method
+
 
 
 run_tests()
