@@ -50,6 +50,14 @@ class TravelTrackerApp(App):
         # Update button text and label
         instance.text = "{} in {}, priority {} ({})".format(location[0],location[1],location[2],location[3])
 
+    def add_place(self):
+        #to add more locations to the list
+        name = self.root.ids.input_name.text
+        country = self.root.ids.input_country.text
+        try:
+            priority = int(self.root.ids.input_priority.text)
+            if name == "" or country == "" or priority == "":
+            #todo add a text bar to show error or whether saved
 
 
 TravelTrackerApp().run()
