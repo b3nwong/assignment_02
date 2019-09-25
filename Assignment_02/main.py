@@ -31,7 +31,7 @@ class TravelTrackerApp(App):
         #todo self.status_text = "Click on a guitar to reduce its cost by {:.1%}%".format(1 - DISCOUNT_RATE)
         for location in self.app_list:
            #Create a button for each PlaceCollection object, specifying the text
-           temp_button = Button(text= "{} in {}, priority {} ({})".format(location[0],location[1],location[2],location[3]) )
+           temp_button = Button(text= "{} in {}, priority {} ({})".format(location[0],location[1],location[2],location[3]))
            temp_button.bind(on_release=self.press_entry)
          # Store a reference to the location object in the button object
            temp_button.location = location
