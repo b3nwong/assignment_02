@@ -31,23 +31,24 @@ class TravelTrackerApp(App):
         #todo self.status_text = "Click on a guitar to reduce its cost by {:.1%}%".format(1 - DISCOUNT_RATE)
         for location in self.app_list:
            #Create a button for each PlaceCollection object, specifying the text
-           temp_button = Button(text=str(location))
+           temp_button = Button(text= "{} in {}, priority {} ({})".format(location[0],location[1],location[2],location[3]) )
            temp_button.bind(on_release=self.press_entry)
-         # Store a reference to the locationn object in the button object
+         # Store a reference to the location object in the button object
            temp_button.location = location
            self.root.ids.entries_box.add_widget(temp_button)
 
 
     def press_entry(self, instance):
         """this function will change the place's visited/unvisited status upon pressing"""
-        #todo Each button was given its own ".guitar" object reference, so we can get it directly
+        # Each button was given its own ".location" object reference, so we can get it directly
         location = instance.location
         if location[3] == "Visited":
             location[3] = "Unvisited"
+            #changes the value to "visited" or "unvisted" and vice versa
         else:
             location[3] = "Visited"
         # Update button text and label
-        instance.text = str(location)
+        instance.text = "{} in {}, priority {} ({})".format(location[0],location[1],location[2],location[3])
 
 
 
