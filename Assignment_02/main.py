@@ -19,17 +19,12 @@ class TravelTrackerApp(App):
         travel_locations = PlaceCollection()
         self.app_list = travel_locations.load_places('places.csv')
 
-
     def build(self):
         """to build the kivy app"""
         self.title = "Travel Tracker App"
         self.root = Builder.load_file('app.kv')
         self.create_widgets()
         return self.root
-
-  #  def sort_method_priority(self):
-    # call sorting method from placecollection
-    #change display on sorting label
 
     def clear_input(self):
         """to reset the text entry fields"""

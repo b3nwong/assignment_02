@@ -38,6 +38,6 @@ class Place:
     def is_important(self):
         """if a place has priority <= 2 it will be added to this list"""
         if self.priority <= 2:
-            return self
+            return True
 
     pass

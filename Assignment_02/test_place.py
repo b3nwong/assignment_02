@@ -26,7 +26,7 @@ def run_tests():
 
     print(new_place) #string representation of place
     print(new_place.check_visited()) #check if place is visited
-    print("hello {}".format(new_place.is_important())) #important place is added to this list
+    print(new_place.is_important()) #important place is added to this list
 
 
 
