@@ -39,6 +39,7 @@ class TravelTrackerApp(App):
          # Store a reference to the location object in the button object
            temp_button.location = location
            if self.is_important(location[2]) == True:
+               #if location is important, button will now be different color
                 temp_button.background_color = [1,0,0,1]
            self.root.ids.entries_box.add_widget(temp_button)
 
@@ -116,6 +117,12 @@ class TravelTrackerApp(App):
         """if a place has priority <= 2 it will be added to this list"""
         if priority <= 2:
             return True
+
+    def on_stop(self):
+        import csv
+        with open('places.csv', 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerows(self.app_list)
 
 
 TravelTrackerApp().run()
