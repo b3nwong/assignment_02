@@ -1,3 +1,9 @@
+"""
+Wong Jie An
+26/09/2019
+this program tracks where the user has been and places they hope to visit in future and runs it on a kivy app
+https://github.com/b3nwong/assignment_02/tree/master/Assignment_02
+"""
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.button import Button
@@ -15,6 +21,7 @@ class TravelTrackerApp(App):
 
 
     def build(self):
+        """to build the kivy app"""
         self.title = "Travel Tracker App"
         self.root = Builder.load_file('app.kv')
         self.create_widgets()
@@ -25,6 +32,7 @@ class TravelTrackerApp(App):
     #change display on sorting label
 
     def clear_input(self):
+        """to reset the text entry fields"""
         self.root.ids.input_name.text = ""
         self.root.ids.input_country.text = ""
         self.root.ids.input_priority.text = ""
@@ -61,6 +69,7 @@ class TravelTrackerApp(App):
         # gets rid of the old widgets
         self.create_widgets()
         if self.is_important(location[2]) == True:
+            #if location is important, it will display a different msg
             if location[3] == "Visited":
                 self.status_text = "You visited {}. Great travelling!".format(location[0])
             elif location[3] == "Unvisited":
@@ -68,12 +77,12 @@ class TravelTrackerApp(App):
         else:
             if location[3] == "Visited":
                 self.status_text = "You visited {}.".format(location[0])
-
+            #will print this if not impt and unvisited
             elif location[3] == "Unvisited":
                 self.status_text = "You need to visit {}.".format(location[0])
 
     def add_place(self):
-        #to add more locations to the list
+        """insert a new location into the list"""
         temp_list = []
         name = self.root.ids.input_name.text
         country = self.root.ids.input_country.text
@@ -96,6 +105,7 @@ class TravelTrackerApp(App):
                 self.status_text = "{} has been added.".format(name)
                 #tells user they have managed to add their new location to visit
         except ValueError:
+            #will be displayed if user enters incorrect input
             self.status_text = "Invalid input. Fill in all fields and a number is chosen for 'Priority'."
         self.root.ids.input_name.text = ""
         self.root.ids.input_country.text = ""
