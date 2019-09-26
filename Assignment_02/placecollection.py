@@ -39,6 +39,7 @@ class PlaceCollection:
         temp_list.append((location.priority))
         temp_list.append(location.check_visited())
         self.places.append(temp_list)
+        return self.places
 
     def sort_priority(self, list_to_sort):
         """sort the list based on the 'priority' object in ascending"""

@@ -33,6 +33,7 @@ BoxLayout:
 
         Button:
             text:"Add place"
+            on_press: app.add_place()
             #save these details into a list on_press:
         Button:
             text: "Clear"
@@ -52,3 +53,7 @@ BoxLayout:
         Label:
             id: important_place_label
             #todo should tell you you visited important place or have already
+
+        Label:
+            size_hint_y: 0.1
+            text: app.status_text
