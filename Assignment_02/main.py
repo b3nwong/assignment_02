@@ -7,6 +7,7 @@ from Assignment_02.place import Place
 
 class TravelTrackerApp(App):
     status_text = StringProperty()
+    current_sort = StringProperty()
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         travel_locations = PlaceCollection()
@@ -14,7 +15,7 @@ class TravelTrackerApp(App):
 
 
     def build(self):
-        self.title = "Travl Tracker App"
+        self.title = "Travel Tracker App"
         self.root = Builder.load_file('app.kv')
         self.create_widgets()
         return self.root
@@ -37,6 +38,8 @@ class TravelTrackerApp(App):
            temp_button.bind(on_release=self.press_entry)
          # Store a reference to the location object in the button object
            temp_button.location = location
+           if self.is_important(location[2]) == True:
+                temp_button.background_color = [1,0,0,1]
            self.root.ids.entries_box.add_widget(temp_button)
 
 
@@ -71,7 +74,6 @@ class TravelTrackerApp(App):
                 temp_list.append(priority)
                 temp_list.append("Unvisited")
                 self.app_list.append(temp_list)
-                print(self.app_list)
                 self.root.ids.entries_box.clear_widgets()
                 #gets rid of the old widgets
                 self.create_widgets()
@@ -84,7 +86,36 @@ class TravelTrackerApp(App):
         self.root.ids.input_country.text = ""
         self.root.ids.input_priority.text = ""
 
+    def sort_priority(self):
+        """sort the list based on the 'priority' object in ascending"""
+        from operator import itemgetter
+        self.app_list.sort(key=itemgetter(2))
+        print(self.app_list)
+        self.root.ids.entries_box.clear_widgets()
+        # gets rid of the old widgets
+        self.create_widgets()
 
+    def sort_alphabetical(self):
+        """sort the list on alphabetical order by name of places"""
+        self.app_list.sort()
+        print(self.app_list)
+        self.root.ids.entries_box.clear_widgets()
+        # gets rid of the old widgets
+        self.create_widgets()
+
+    def sort_visited(self):
+        """sort the list according to visited or not"""
+        from operator import itemgetter
+        self.app_list.sort(key=itemgetter(3), reverse=False)
+        print(self.app_list)
+        self.root.ids.entries_box.clear_widgets()
+        # gets rid of the old widgets
+        self.create_widgets()
+
+    def is_important(self,priority):
+        """if a place has priority <= 2 it will be added to this list"""
+        if priority <= 2:
+            return True
 
 
 TravelTrackerApp().run()

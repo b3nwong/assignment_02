@@ -10,8 +10,13 @@ BoxLayout:
         #this button will sort the way the locations are displayed
             text: "Sort by: "
 
-        Button:
-            text: "Visited"
+        Spinner:
+            id: sorter_spinner
+            text: "Choose sorting"
+            values: ("Visited", "Alphabetical", "Priority")
+            on_text: if sorter_spinner.text == "Priority": app.sort_priority()
+            on_text: if sorter_spinner.text == "Alphabetical": app.sort_alphabetical()
+            on_text: if sorter_spinner.text == "Visited": app.sort_visited()
 
         Label:
             text: "Add new place..."
@@ -42,18 +47,16 @@ BoxLayout:
         orientation: 'vertical'
 
         Label:
+            size_hint_y: 0.1
             text: "Places to visit: "
             id: sort_method_label_output
             #display
 
         BoxLayout:
+            size_hint_y: 1
             id: entries_box
             orientation: "vertical"
             #List objects should be added here making buttons
-        Label:
-            id: important_place_label
-            #todo should tell you you visited important place or have already
-
         Label:
             size_hint_y: 0.1
             text: app.status_text
