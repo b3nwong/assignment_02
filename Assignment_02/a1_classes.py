@@ -47,7 +47,7 @@ def list_out_places():
             list_numb += 1
             print("*{}. {:<{}} in {:>{}} priority {}".format(list_numb, row[0],20, row[1],20, row[2]))
             unvisited_places += 1
-    return unvisited_places #TODO COME BACK AND REVIEW THIS
+    return unvisited_places
 
 def execute_menu():
     show_menu()

@@ -44,7 +44,6 @@ def run_tests():
     print("Test saving:")
     place_collection.save_file('places.csv') #new edited file is now saved and csv is updated!
 
-    # TODO: Add more tests, as appropriate, for each method
 
 
 run_tests()

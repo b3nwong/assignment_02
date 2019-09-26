@@ -38,9 +38,11 @@ class TravelTrackerApp(App):
            temp_button.bind(on_release=self.press_entry)
          # Store a reference to the location object in the button object
            temp_button.location = location
-           if self.is_important(location[2]) == True:
-               #if location is important, button will now be different color
+           if location[3] == "Unvisited":
+               #if location is visited, button will now be different color
                 temp_button.background_color = [1,0,0,1]
+           else:
+               temp_button.background_color = [1,1,1,1]
            self.root.ids.entries_box.add_widget(temp_button)
 
 
@@ -51,12 +53,24 @@ class TravelTrackerApp(App):
         if location[3] == "Visited":
             location[3] = "Unvisited"
             #changes the value to "visited" or "unvisted" and vice versa
+            #also changes color on press
         else:
             location[3] = "Visited"
         # Update button text and label
-        instance.text = "{} in {}, priority {} ({})".format(location[0],location[1],location[2],location[3])
-        self.status_text = "{} has been updated.".format(location[0])
+        self.root.ids.entries_box.clear_widgets()
+        # gets rid of the old widgets
+        self.create_widgets()
+        if self.is_important(location[2]) == True:
+            if location[3] == "Visited":
+                self.status_text = "You visited {}. Great travelling!".format(location[0])
+            elif location[3] == "Unvisited":
+                self.status_text = "You need to visit {}. Get going!".format(location[0])
+        else:
+            if location[3] == "Visited":
+                self.status_text = "You visited {}.".format(location[0])
 
+            elif location[3] == "Unvisited":
+                self.status_text = "You need to visit {}.".format(location[0])
 
     def add_place(self):
         #to add more locations to the list
@@ -119,8 +133,10 @@ class TravelTrackerApp(App):
             return True
 
     def on_stop(self):
+        """writes the new csv file"""
         import csv
         with open('places.csv', 'w', newline='') as f:
+            #takes out the empty row in between
             writer = csv.writer(f)
             writer.writerows(self.app_list)
 
